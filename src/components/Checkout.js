@@ -15,6 +15,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { Link, useNavigate, useParams } from "react-router-dom";
+// import { loadStripe } from "@stripe/stripe-js";
 
 export default function Checkout() {
   const [previousUserAmount, setPreviousUserAmount] = useState(null);
@@ -94,6 +95,28 @@ export default function Checkout() {
     navigate(`/thank-you/${params.campaignIdz}`);
     toast.success(`$${amount} donated successfully`);
   };
+
+  // const makePayment = async () => {
+  //   const stripe = await loadStripe("Your api key from stripe.com");
+  //   const body = { amount };
+
+  //   const res = await fetch("/api/user/login", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ body }),
+  //   });
+  //   const session = await res.json();
+
+  //   const result = stripe.redirectToCheckout({
+  //     sessionId: session.id,
+  //   });
+
+  //   if (result.error) {
+  //     console.log(result.error);
+  //   }
+  // };
 
   return (
     <>
@@ -315,6 +338,7 @@ export default function Checkout() {
               </div>
 
               <button
+                // onClick={makePayment}
                 type="button"
                 onClick={onSubmit}
                 className="mt-6 w-full rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border hover:bg-gradient-to-r hover:from-purple-700 hover:to-indigo-700 hover:bg-origin-border py-2 px-4 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-offset-2"
